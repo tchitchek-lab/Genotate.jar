@@ -1,41 +1,52 @@
-# Genotate.jar: a platform for the annotation of transcript sequences
+# Genotate automatic annotation pipeline for transcriptomic sequences
+
+Many bioinformatics tools exist to annotate reconstructed transcripts but are too complex to use for non–bioinformaticians. 
+We have developed a platform to automatically annotate large sets of transcriptomic sequences. 
+Annotations can be inferred based on their similarities with reference annotated sequences. 
+Annotations can also be inferred based on structure and domains of protein sequences.
+Genotate is available on [Genotate Website](http://www.genotate.life).
+
+We provide an interactive and intuitive web platform, named Genotate, which allow to search and visualize this identified annotations.
+Genotate web platform can be installed on a server, follow the instruction on [Github](https://github.com/tchitchek–lab/genotate.web).
 
 # Table of Contents
 
 1. [Introduction](#Introduction)
 2. [Installation requirements](#Installation)
 3. [Installation of Genotate](#Installation)
-4. [Usage of Genotate](#Genotate)
-5. [Structure of the annotation results](#Output)
+4. [How to run Genotate](#Genotate)
+5. [Output files](#Output)
 
 # <a name="Introduction"> 1. Introduction</a>
 
-The Genotate platform allows the automatic annotation and exploration of transcript sequences.
+Genotate unifies ORF identification, similarity annotation and functional annotation in an automatic annotation platform.
+Genotate provides to biologist the possibility to annotate transcript sequence and entire transcriptome.
 
-The Genotate platform is composed of a Java standalone application (Genotate.jar) and web platform (Genotate.life).
-
-Transcript annotations can be predicted based on sequence homology and structural analyses at both the transcript and amino acid levels. Thanks to the Genotate web plaform, identified annotations can be easily visualized using interactive viewers. Furthermore, users can search for transcripts having specific features among their annotation results.
-
-<img src="README.figures/workflow.png"/>
-
-Genotate is available at [https://genotate.life](https://genotate.life) and this README explains how to install the Genotate.jar standalone application on a local private servers for users willing to customize it.
-
+<img src="README/framework.png" />
 
 ## Identification of ORF
 
-For each transcript to analyze, Genotate first detects the sets of all possible ORFs based on parameters selected in the ORF panel. ORFs are then translated to obtain the associated protein sequences. The start and stop codons (which initiate and end the ORFs) can be specified by users. By default, start codon is set to 'ATG' and stop codons to 'TAG, TGA, and TAA'. ORFs with a length lower than a threshold can be filtered to avoid interpretations of sequences with no biological meaning. Inner ORFs (which consist of nested ORF sequences) can also be identified as well as outside ORF (which consist of ORFs lacking either the start or stop codon). By default, the complete transcript sequence is conserved to be annotated as a non-coding RNA. By default, ORFs are also identified on the reverse complemented transcript sequence.
+Genotate is able to identify for each reconstructed transcript all the ORF.
+To search for a peptidic functional domain it is necessary to know the encoded protein sequence. The open reading frame needs to be identified on the transcript sequence and then translated to obtain the protein.
+A reading frame characterized a sequence of nucleotides divided into a set of consecutive, non–overlapping triplets.
+To simplify the representation, only one frame and it's reverse is taken into account in the example below.
+The sequence contains 3 frames and their reverse, and each one can contain multiple ORF.
+An ORF is on a frame, begins with a Start codon initiating the translation and end with a Stop codon terminating the translation.
 
-In detail, the protein associated to a transcript are obtained by detecting all the possible ORF on the transcript. A frame is composed of nucleotide triplets called codon. The transcript sequence is divided into three frames, with a shift of one base on the sequence strand. The transcript sequence can also be reversed, and the nucleic base complemented to obtain the complementary sequence. An Open Reading Frame begins with a codon start and ends with a codon stop. A codon can be translated to an amino acid or end of translation signal. A codon encoding the beginning of the translation, such as 'ATG', is called codon start. A codon encoding the end of the translation, such as 'TAG, TGA, TAA', is called codon stop. A protein is obtained from the translated sequence of an Open Reading Frame.
+For each reconstructed transcript, Genotate firstly identifies the sets of all possible ORFs. ORF with a length under a threshold can be filtered, to avoid interpretations of sequences with no biological meaning. The start and stop codons, which initiate and end the ORF, can be specified by users. By default, start codon is set to ‘ATG’ and stop codons to ‘TAG, TGA, TAA’. The ORFs can be identified in both strands of the reconstructed transcripts. Inner ORFs which consist of nested ORF sequences, can also be identified as well as outside ORF which consists of sequences lacking either the start or stop codon.
 
-The following figure represents different possible ORFs.
+The following figure represents the diversity of ORF.
+An ORF can begin at every start codon which has a stop codon in the same frame.
 
-<img src="README.figures/orf.png" />
+<img src="README/orf.png" />
 
 ORF 2 and 6 are complete ORF which includes the inner ORF 1, 4  and 5. The ORF 3 and 7 are incomplete and characterized as outside ORF.
 
-## Identification of homology annotations
+## Identification of similarity annotations
 
-Homology annotations are computed based on 290 reference datasets of transcriptomic or proteomic sequences obtained from Ensembl, UniRef, and NONCODE databases. Sequences homologies are identified using the BLAST algorithm. Homology annotation results can be filtered based on the percentage identity match, the percentage of query sequence coverage, and the percentage of reference sequence coverage. The meta-information associated with the matched sequences (i.e., the sequence id, description, function, and properties) are available in the homology annotation results.
+Genotate annotate sequences based on the similarity to other reference sequences.
+
+The similarity annotations are computed based on any set of reference sequences specified by the user. The similarity annotations are identified at both the nucleic and peptidic levels. Sequences similarities are identified with the BLAST algorithm. Similarity results can be filtered based on the identity percentage. Similarity results can also be filtered based on the query sequence cover percentage and subject sequence cover percentage. The descriptions associated with the matched sequences are available in the similarity results computed by Genotate.
 
 <table>
   <tr style="font–weight: bold;">
@@ -45,25 +56,26 @@ Homology annotations are computed based on 290 reference datasets of transcripto
   </tr>
   <tr>
     <td><sub>Ensembl</sub></td>
-    <td><sub>Transcriptome (cds, cdna, ncrna) and proteome reference for a large number of species</sub></td>
+    <td><sub>Transcriptome(cds, cdna, ncrna) and proteome for a large number of species</sub></td>
     <td><sub><a href='http://www.ensembl.org/index.html'>Link</a><sub></td>
   </tr>
   <tr>
-    <td><sub>UniRef</sub></td>
-    <td><sub>UniRef contains high quality computationally analyzed records that are enriched with automatic annotation and classification.</sub></td>
+    <td><sub>Uniprot</sub></td>
+    <td><sub>UniProtKB/TrEMBL contains high quality computationally analyzed records that are enriched with automatic annotation and classification. Swissprot contains high quality manually annotated and non–redundant protein sequence database.</sub></td>
     <td><sub><a href='http://www.uniprot.org/downloads'>Link</a><sub></td>
   </tr>
   <tr>
-    <td><sub>NONCODE</sub></td>
-    <td><sub>NONCODE is dedicated to non-coding RNAs (excluding tRNAs and rRNAs) for multiple species</sub></td>
-    <td><sub><a href='http://www.noncode.org/'>Link</a><sub></td>
+	<td><sub>NONCODE</sub></td>
+	<td><sub>database dedicated to non-coding RNAs (excluding tRNAs and rRNAs), by species </sub></td>
+	<td><sub><a href='http://www.noncode.org/'>Link</a><sub></td>
   </tr>
 </table>
 
 ## Identification of functional annotations
 
-Functional annotations are computed based on a compendium of 26 publicly available computational tools and databases specified by the user. Especially, we use the InterproScan software to find functional domains in the translated protein sequences of the reconstructed transcripts. Indeed, InterproScan unifies protein functional domains from different databases.
+Genotate is able to identify functional domains based on multiples algorithm.
 
+The functional annotations are computed based on a large set of publicly available computational tools and databases. Especially, we use the InterproScan software to find protein functional domains on the reconstructed transcript. InterproScan unifies proteins functional domains from different databases such as PFAM, SUPERFAMILY, and PANTHER. The PFAM database contains non redundant conserved proteomic functional domains found on various species. The SUPERFAMILY database provides information about the 3D structure information based on protein similarities. The PANTHER database provides ontology information with the molecular function and the biological process.
 
 <table>
   <tr style="font–weight: bold;">
@@ -156,6 +168,17 @@ Functional annotations are computed based on a compendium of 26 publicly availab
     <td><sub>J. Craig Venter Institute, Rockville, MD, US.</sub></td>
     <td><sub><a href='http://www.jcvi.org/cgi–bin/tigrfams/index.cgi'>Link</a><sub></td>
   </tr>
+</table>
+
+The functional annotations can also be computed based on various prediction tools, such as TMHMM, SIGNALP, PROP. TMHMM predicts of transmembrane domains, which fundamentally rule all the membrane biochemical processes, with the hidden Markov models. SIGNALP predicts the secretory signal peptide, a ubiquitous signal that targets for translocation across the membrane, based on neural network. PROP predicts arginine and lysine propeptide, which characterize inactive peptides precursors which undergo post–translational processing to become biologically active polypeptides. The parameters of each tool available through Genotate can be specified, and the functional annotations can be filtered based on the evalue and other criteria specific to each tool.
+
+<table>
+  <tr style="font–weight: bold;">
+    <td style="width:10%">Name</sub></td>
+    <td style="width:40%">Information</sub></td>
+    <td style="width:40%">Institute</sub></td>
+    <td style="width:10%">Link</sub></td>
+  </tr>
   <tr>
     <td><sub>Tmhmm</sub></td>
     <td><sub>predicts of transmembrane helices in proteins</sub></td>
@@ -184,19 +207,67 @@ Functional annotations are computed based on a compendium of 26 publicly availab
     <td><sub>Department of Biomedical Sciences, University of Padua</sub></td>
     <td><sub><a href='http://protein.bio.unipd.it/mobidblite/'>Link</a><sub></td>
   </tr>
+  <tr>
+    <td><sub>rnammer</sub></td>
+    <td><sub>Annotates ribosomal RNA genes</sub></td>
+    <td><sub>Centre for Molecular Biology and Neuroscience and Institute of Medical Microbiology, University of Oslo</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/services/RNAmmer/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>tRNAscan</sub></td>
+    <td><sub>Predicts transfer RNA genes</sub></td>
+    <td><sub>Biomolecular Engineering, University of California Santa Cruz</sub></td>
+    <td><sub><a href='http://lowelab.ucsc.edu/tRNAscan-SE/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>MHCI</sub></td>
+    <td><sub>MHC I from IEDB database determine the ability to bind to a specific MHC class I molecule</sub></td>
+    <td><sub>Division of Vaccine Discovery, La Jolla Institute for Allergy and Immunology</sub></td>
+    <td><sub><a href='http://tools.iedb.org/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>MHCII</sub></td>
+    <td><sub>MHC II from IEDB database predict MHC Class II epitopes</sub></td>
+    <td><sub>Division of Vaccine Discovery, La Jolla Institute for Allergy and Immunology</sub></td>
+    <td><sub><a href='http://tools.iedb.org/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>NETCGLYC</sub></td>
+    <td><sub>NetCGlyc produces neural network predictions of C-mannosylation sites in mammalian proteins.</sub></td>
+    <td><sub>Department of Medical Biochemistry and Biophysics, Karolinska Institutet, SE-171 77 Stockholm, Sweden and Stockholm Bioinformatics Center</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>NETNGLYC</sub></td>
+    <td><sub>NetNglyc predicts N-Glycosylation sites in human proteins using artificial neural networks</sub></td>
+    <td><sub>Center for Biological Sequence Analysis, The Technical University of Denmark, Lyngby, Denmark</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>BEPIPRED</sub></td>
+    <td><sub>Predict the location of linear B cell epitopes</sub></td>
+    <td><sub>Center for Biological Sequence Analysis, BioCentrum-DTU, Building 208, Technical University of Denmark</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/'>Link</a><sub></td>
+  </tr>
 </table>
 
-# <a name="Installation"> 2. Installation requirements</a>
-## Installation of Java
+# <a name="Installation"> 1. Installation requirements</a>
 
-Java can be downloaded on the [java.com website](https://www.java.com/fr/download/linux_manual.jsp).
+Java is used to run Genotate.
+For similarity annotation, NCBI BLAST is used and need to be installed.
+For functional domain research, the tools InterproScan, TMHMM, SignalP, ProP and others need to be installed.
+After installation check IN THE EXECUTABLE SCRIPTS the location of tch, perl, python, libraries and temporary folders for all tools.
 
-Please install the Java interpreter in the 'services/java/bin/java' folder.
+## Installation of Java 8
 
-## Installation of BLAST
-The BLAST algorithm is used to identify sequences homologies. 
+Java is used to launch Genotate and can be downloaded at [java.com](https://www.java.com/fr/download/linux_manual.jsp).
+Please install java in services/java/bin/java.
 
-BLAST can be downloaded on the [NCBI website](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and installed using the following commands:
+## Installation of BLAST 2.6.0
+NCBI BLAST is used for similarity annotation, and need to be installed.
+BLAST can be downloaded at [NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download).
+BLAST is used for the annotation by homology. BLAST generate a database from a fasta nucleic and proteic file.
+Query sequence can then be aligned against the databases to search for similar sequences.
 
 ```
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi–blast–2.6.0+–x64–linux.tar.gz
@@ -204,18 +275,20 @@ tar –pxvzf ncbi–blast–2.6.0+–x64–linux.tar.gz
 mv ncbi–blast–2.6.0+ blast
 ```
 
-## Installation of InterProScan
-InterproScan unifies protein functional domains from different databases, such as Pfam, SUPERFAMILY, and PANTHER.
-
-InterProScan can be downloaded on the [interproscan github](https://github.com/ebi–pf–team/interproscan/wiki/HowToDownload) and installed using the following commands:
+## Installation of InterProScan 5.22
+InterproScan is used for functional domain research, and need to be installed.
+InterProScan allows sequences to be scanned against functional domains, provided by several different databases.
+InterProScan can be downloaded at [interproscan github](https://github.com/ebi–pf–team/interproscan/wiki/HowToDownload).
 
 ```
 wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.22–61.0/interproscan–5.22–61.0–64–bit.tar.gz
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.22–61.0/interproscan–5.22–61.0–64–bit.tar.gz.md5
+md5sum –c interproscan–5.22–61.0–64–bit.tar.gz.md5
 tar –pxvzf interproscan–5.22–61.0–64–bit.tar.gz
 mv interproscan–5.22–61.0 interproscan
 ```
 
-To install Panther, please download the latest Panther data file (~ 12 GB). The data file need to be extracted into the '[InterProScan5 home]/data/' folder.
+To install Panther, please download the latest Panther data files (~ 12 GB). The data file need to be extracted into the [InterProScan5 home]/data/ directory. You can check the MD5 checksum on the file after you have downloaded it.
 
 ```
 wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther–data–11.1.tar.gz
@@ -224,12 +297,12 @@ md5sum –c panther–data–11.1.tar.gz.md5
 tar –pxvzf panther–data–11.1.tar.gz
 ```
 
-The full path of the Java interpreter must be defined in the bash environment or directly in the 'interproscan.sh' script
+The full path to JAVA must be set in the environment or directly in the script interproscan.sh
 ```
 JAVA=/var/www/genotate/services/java/bin/java
 ```
 
-You can edit the 'interproscan.properties' file to change the number of parallel jobs allowed for interproscan and interproscan workers.
+Edit interproscan.properties to change the number of parallel jobs allowed for interproscan and interproscan workers.
 At least one worker is required, which can launch other workers.
 ```
 number.of.embedded.workers=1
@@ -239,60 +312,61 @@ worker.maxnumber.of.embedded.workers=4
 ```
 
 ## Installation of ProP
-ProP predicts arginine and lysine propeptides that can be removed to activate the protein. 
+PROP predicts arginine and lysine propeptide cleavage sites, which characterize inactive peptides precursors.
+The precursors undergo post–translational processing to become biologically active polypeptides.
+ProP can be downloaded at [CBS website](http://www.cbs.dtu.dk/cgi–bin/nph–sw_request?prop).
 
-ProP can be downloaded on the [CBS website](http://www.cbs.dtu.dk/cgi–bin/nph–sw_request?prop).
-
-A tcsh interpreter is required to run ProP which can be installed using the following command:
+A tcsh interpreter is used to run ProP and needs to be installed.
 ```
 apt–get install tcsh
 ```
 
-The prop script needs to be edited to specifiy the full path to the 'prop' folder.
+The script prop needs to be edited to set the full path to prop folder.
 ```
 setenv PROPHOME /var/www/genotate/services/prop
 ```
 
 ## Installation of TMHMM
-TMHMM predicts transmembrane domains that are found in proteins usually involved in transport or signaling.
+TMHMM predicts of transmembrane domains, which fundamentally rule all the membrane biochemical processes, with the hidden Markov models.
+TMHMM can be downloaded at [CBS website](http://www.cbs.dtu.dk/cgi–bin/nph–sw_request?tmhmm).
 
-TMHMM can be downloaded on the [CBS website](http://www.cbs.dtu.dk/cgi–bin/nph–sw_request?tmhmm).
-
-The tmhmm script needs to be edited to specifiy the full path to tmhmm folder.
+The script tmhmm need to be edited to set the full path to tmhmm folder.
 ```
 $opt_basedir = "/var/www/genotate/services/tmhmm/";
 ```
-Please check that the path to the perl interpreter (/usr/bin/perl or /usr/local/bin/perl) are well specified in the 'tmhmm/bin/tmhmm' and 'tmhmm/bin/tmhmmformat.pl' files.
-
+Check the path to perl /usr/bin/perl or /usr/local/bin/perl in the files tmhmm/bin/tmhmm and tmhmm/bin/tmhmmformat.pl.
+If no results are printed by tmhmm, the option –d enable tmhmm error messages.
 
 ## Installation of SignalP
-SignalP predicts secretory signal peptides that correspond to markers for translocation of the protein across the membrane.
+SIGNALP predicts the secretory signal peptide, a ubiquitous signal that targets for translocation across the membrane, based on neural network.
+SignalP can be downloaded at [CBS website](http://www.cbs.dtu.dk/cgi–bin/nph–sw_request?signalp).
 
-SignalP can be downloaded on the [CBS website](http://www.cbs.dtu.dk/cgi–bin/nph–sw_request?signalp).
-
-The signalp script needs to be edited to specifiy the full path to the signalP folder.
+The script signalp need to be edited to set the full path to signalP folder.
 ```
 $ENV{SIGNALP} = '/var/www/genotate/services/signalp';
 ```
 
-## Installation of NetCGlyc 
-NetNglyc predicts N-Glycosylation sites that correspond to the attachment of glycans in the N-terminal part of the protein. 
+## Installation of NETCGLYC
+Glycosylation covalently attach a carbohydrate to proteins and lipids. 
+Some proteins require to be glycosylated to fold correctly. 
+NetCGlyc produces neural network predictions of C–mannosylation sites in mammalian proteins.
+NETCGLYC and is available on [CBS website](http://www.cbs.dtu.dk/).
+The script which launch NETCGLYC need to be edited to set the full path to the installation directory.
 
-NetCGlyc  and is available on the [CBS website](http://www.cbs.dtu.dk/).
+## Installation of NETNGLYC
+NetNglyc predicts N–Glycosylation sites in human proteins using artificial neural networks. 
+NETNGLYC and is available on [CBS website](http://www.cbs.dtu.dk/).
+The script which launch NETNGLYC need to be edited to set the full path to the installation directory.
 
-The script that launch NetCGlyc  needs to be edited to specifiy the full path to the installation directory.
+## Installation of BEPIPRED
+Predict the location of linear B–cell epitopes using a combination of a hidden Markov model and a propensity scale method.
+MHC–II and is available on [CBS website](http://www.cbs.dtu.dk/).
+The script which launch BEPIPRED need to be edited to set the full path to the installation directory.
 
-## Installation of BepiPred
-BepiPred predicts B-cell epitopes that are antibodies recognized in response to infectious pathogens.
-
-BepiPred is available on the [CBS website](http://www.cbs.dtu.dk/).
-
-The script that launch BepiPred need to be edited to specifiy the full path to the installation directory.
-
-## Installation of NetMHCpan-I
-NetMHCpan-I predicts peptides that bind the Major Histocompatibility Complex (MHC) class I that are involved in recognition of pathogens by the cellular immune system. 
-
-NetMHCpan-I is available on the [IEDB website](http://tools.iedb.org/) and can be installed using the following commands:
+## Installation of MHC–I
+Determine each subsequence's ability to bind to a specific MHC class I molecule.
+MHC–I and is available on [IEDB website](http://tools.iedb.org/).
+A configuration script is available in the tool directory.
 
 ```
 wget http://media.iedb.org/tools/mhci/latest/IEDB_MHC_I–2.15.4.tar.gz
@@ -302,9 +376,7 @@ cd mhc_i
 #sudo apt–get install ––reinstall python–pkg–resources
 ```
 
-A configuration script is available in the tool directory.
-
-After installation, remove the line waiting for input in the predict_binding.py script as the following:
+After installation, remove the line waiting for input in predict_binding.py as following.
 
 ```
 #if not sys.stdin.isatty():
@@ -312,10 +384,10 @@ After installation, remove the line waiting for input in the predict_binding.py 
 #    args.append(stdin)
 ```
 
-## Installation of NetMHCpan-II
-NetMHCpan-II predicts peptides that bind the Major Histocompatibility Complex (MHC) class II that are involved in recognition of pathogens by the cellular immune system.
-
-NetMHCpan-II is available on the [IEDB website](http://tools.iedb.org/) and can be installed using the following commands:
+## Installation of MHC–II
+Predict MHC Class II epitopes, including a consensus approach which combines NN–align, SMM–align and Combinatorial library methods.
+MHC–II and is available on [IEDB website](http://tools.iedb.org/).
+A configuration script is available in the tool directory.
 
 ```
 apt–get install gawk
@@ -326,9 +398,7 @@ cd mhc_ii
 #sudo apt–get install ––reinstall python–pkg–resources
 ```
 
-A configuration script is available in the tool directory.
-
-After installation, remove the line waiting for input in the predict_binding.py script as the following:
+After installation, remove the line waiting for input in predict_binding.py as following.
 
 ```
 #if not sys.stdin.isatty():
@@ -337,9 +407,7 @@ After installation, remove the line waiting for input in the predict_binding.py 
 ```
 
 ## Installation of rnammer
-RNAmmer annotates ribosomal RNA genes. 
 
-RNAmmer can be installed using the following commands:
 ```
 wget http://eddylab.org/software/hmmer/2.3/hmmer-2.3.tar.gz
 cd hmmer-2.3
@@ -358,10 +426,8 @@ edit rnammer paths
 edit core-rnammer remove --cpu 1
 ```
 
-## Installation of tRNAscan
-tRNAScanSE predicts transfer RNA genes.
+## Installation of tRNAscan SE
 
-tRNAscan SE can be installed using the following commands:
 ```
 wget http://lowelab.ucsc.edu/software/tRNAscan-SE.tar.gz
 tar -zxvf tRNAscan-SE.tar.gz
@@ -372,48 +438,57 @@ make
 make install
 ```
 
-
 ## Configuration of execution authorization
-Please check that annotation algorithms and software can be correctly executed.
+Please verify that the services can be executed.
 
 The following files and folders shoul be executable:
  * Java executables in jdk/bin and jdk/jre/bin
  * BLAST executables in blast/bin
- * ProP executables in prop/bin and prop/how and the prop script 
- * TMHMM executables in tmhmm/bin and the tmhmm script 
- * SignalP executables in signalP/bin and the signalp script 
+ * ProP executables in prop/bin and prop/how and the script prop
+ * TMHMM executables in tmhmm/bin and the script tmhmm
+ * SignalP executables in signalP/bin and the script signalp
+ * SABLE executables in sable/bin and the script sable
 
-# <a name="Usage"> 3. Installation of Genotate</a>
+# <a name="Usage"> 2. Installation of Genotate</a>
 
-Genotate can be downloaded using the following command:
+Genotate java executable is available on Github. Genotate can be downloaded using the following command:
 
 ```
-wget https://github.com/tchitchek–lab/genotate.jar/blob/master/binaries/genotate.jar
+wget https://github.com/tchitchek–lab/genotate/blob/master/binaries/genotate.jar
 ```
 
-Genotate requires a configuration file (specifiying the paths to all programs and databases used for the annotation analyses). Please ensure that the 'genotate.config' file is well in genotate.jar folder.
+Genotate requires a configuration file with the path to all programs and databases used for the annotation. Please ensure the file genotate.config is in genotate.jar folder.
 
 Below you can found an example for the configuration file, available in github.
 ```
-BLAST:/var/www/genotate/services/blast/bin
-BLASTALL:/var/www/genotate/services/interproscan/bin/blast/2.2.24/bin
-JAVA:/var/www/genotate/services/jdk/jre/bin/java
-INTERPROSCAN:/var/www/genotate/services/interproscan/interproscan.sh
-LIPOP:/var/www/genotate/services/lipop/LipoP
-PROP:/var/www/genotate/services/prop/prop
-SIGNALP:/var/www/genotate/services/signalp/signalp
-TMHMM:/var/www/genotate/services/tmhmm/tmhmm
+BEPIPRED:/var/www/genotate.life/services/bepipred/bepipred
+BLAST:/var/www/genotate.life/services/blast/bin
+BLASTALL:/var/www/genotate.life/services/interproscan-5.30-69.0/bin/blast/2.2.24
+BLASTDB:/var/www/genotate.life/workspace/blastdb
+INTERPROSCAN:/var/www/genotate.life/services/interproscan-5.30-69.0/interproscan.sh
+JAVA:/var/www/genotate.life/services/javajdk/bin
+MHCI:/var/www/genotate.life/services/mhc_i/src/predict_binding.py
+MHCII:/var/www/genotate.life/services/mhc_ii/mhc_II_binding.py
+NETCGLYC:/var/www/genotate.life/services/netCglyc/netCglyc
+NETNGLYC:/var/www/genotate.life/services/netNglyc/netNglyc
+PROP:/var/www/genotate.life/services/prop/prop
+SIGNALP:/var/www/genotate.life/services/signalp/signalp
+TMHMM:/var/www/genotate.life/services/tmhmm/bin/tmhmm
+RNAMMER:/var/www/genotate.life/services/rnammer/rnammer
+TRNASCANSE:/var/www/genotate.life/services/trnascanse/tRNAscan-SE
+TRNASCANSE_ENV:/var/www/genotate.life/services/trnascanse/setup.tRNAscan-SE
+
 ```
 
-# <a name="Genotate"> 4. Usage of Genotate</a>
+# <a name="Genotate"> 3. Usage of Genotate</a>
 
-Genotate can be executed with the following command:
+Genotate can be executed with the following commands:
 
 ```
 java –jar genotate.jar –input example.fasta –output test –services TMHMM
 ```
 
-Multiple options are available:
+Multiple options are available to run Genotate.
 ```
 -input                         Input nucleic fasta file path
 -output                        Output folder path
@@ -431,7 +506,7 @@ Multiple options are available:
 -ignore_ncrna                  Do not compute the annotation of ncrna
 ```
 
-Multiple annotation services and databases are available. For each annotation service, a threshold score is available to control the quality of the annotations:
+Multiple services and databases are available to run Genotate functinal annotation. For each service a score is available to control the quality of the annotations.
 ```
 BLASTN          [database,identity,query cover,subject cover] by default 85,50,50 (min 0 to max 100)
 BLASTP          [database,identity,query cover,subject cover] by default 85,50,50 (min 0 to max 100)
@@ -441,7 +516,6 @@ MHCII           [score]  by default threshold = 1   (min 0 to max 2)
 NETCGLYC        [score]  by default threshold = 0.5 (min 0 to max 1)
 NETNGLYC        [score]  by default threshold = 0.5 (min 0 to max 1)
 PROP            [score]  by default threshold = 0.2 (min 0 to max 1)
-SABLE           [score]  by default threshold = 5   (min 3 to max 9)
 SIGNALP         [score]  by default threshold = 0.45(min 0 to max 1)
 CDD             [evalue] by default evalue = 0.05 (min 0 to max 1)
 COILS           [evalue] by default evalue = 0.05 (min 0 to max 1)
@@ -451,7 +525,6 @@ MOBIDBLITE      [evalue] by default evalue = 0.05 (min 0 to max 1)
 PANTHER         [evalue] by default evalue = 0.05 (min 0 to max 1)
 PFAM            [evalue] by default evalue = 0.05 (min 0 to max 1)
 PIRSF           [evalue] by default evalue = 0.05 (min 0 to max 1)
-PRIAM           [evalue] by default evalue = 0.05 (min 0 to max 1)
 PRINTS          [evalue] by default evalue = 0.05 (min 0 to max 1)
 PRODOM          [evalue] by default evalue = 0.05 (min 0 to max 1)
 PROSITEPATTERNS [evalue] by default evalue = 0.05 (min 0 to max 1)
@@ -463,11 +536,12 @@ TIGRFAM         [evalue] by default evalue = 0.05 (min 0 to max 1)
 TMHMM           no scores availables
 ```
 
-# <a name="Output"> 5. Structure of the annotation results</a>
+# <a name="Output"> 4. Structure of Genotate results</a>
 
 Genotate provides the annotation results in multiple results files.
 
-The 'transcript.fasta' file contains all the input transcript sequences.  The structure of this file is defined as:
+transcript.fasta: this file contains all the transcripts used in input.
+
 ```
 >ID1 Description
 ATGGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCC
@@ -483,7 +557,7 @@ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ```
 
-The 'transcript_clean.fasta' file contains the transcript sequences keep for the annotation analysis. The structure of this file is defined as:
+transcript_clean.fasta: this file contains conserved for annotations.
 
 ```
 >ID1 Description
@@ -496,14 +570,14 @@ CCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCC
 CCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGTAA
 ```
 
-The 'transcript_info.tab' file contains the description associated to each transcript sequence. The structure of this file is defined as:
+transcript_info.tab: The transcript informations.
 ```
 transcript_id       transcript_name     transcript_desc                                                                        transcript_size
 0               AL049998.1      Homo sapiens mRNA; cDNA DKFZp564L222 Phosphatidylinositol–4–phosphate 3–kinase     1304
 1               NM_002645.3     Homo sapiens phosphatidylinositol–4–phosphate 3–kinase, mRNA                       2936
 ```
 
-The 'region_nucl.fasta' file contains the coding and noncoding nucleic sequences. The 'region_prot.fasta' file contains the translated protein sequences of the coding regions. The structure of this file is defined as:
+region_nucl.fasta and region_prot.fasta contains the coding and noncoding nucleic sequences and for the coding regions the translated protein sequences.
 
 ```
 >Region1 Description
@@ -516,7 +590,7 @@ CCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCC
 CCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGCCCGGGTAA
 ```
 
-The 'region_info.tab' file contains the information associated to each region. The structure of this file is defined as:
+region_info.tab: The region informations, with the positions on the transcript and the strand, the size and the type which can be set to inner or outside.
 ```
 region_id  begin        end     size            strand        coding      type        transcript_id
 0       423             609     186             +             coding                  0
@@ -530,7 +604,7 @@ region_id  begin        end     size            strand        coding      type  
 8       966             1230    264             –             coding                  1
 ```
 
-The 'all_annotations.tab' file contains all the identified annotations. The structure of this file is defined as:
+all_annotations.tab: The annotations with the region_id, the service used, the position of the annotation on the region, the name and the description of the annotation.
 ```
 region_id  service begin   end     name                       description
 10         TMHMM   3       114     outside
@@ -545,7 +619,11 @@ region_id  service begin   end     name                       description
 4          PROP    33      60      cleavage site: KRCGQRRSI
 ```
 
-For each region, an SVG graph is generated to visualize the annotations on the transcript sequences:
+For each region an SVG graph is generated (which can be opened in a web browser) and allow to visualize the annotations on the ORF.
 
-<img src="README.figures/example.png" />
+<img src="README/example.png" />
+
+
+	
+	
 	
