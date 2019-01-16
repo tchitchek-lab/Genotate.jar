@@ -40,27 +40,23 @@ Homology annotations are computed based on 290 reference datasets of transcripto
 <table>
   <tr style="font–weight: bold;">
     <td style="width:10%">Name</sub></td>
-    <td style="width:70%">Information</sub></td>
+    <td style="width:80%">Information</sub></td>
     <td style="width:10%">Link</sub></td>
-    <td style="width:10%">Reference</sub></td>
   </tr>
   <tr>
     <td><sub>Ensembl</sub></td>
     <td><sub>Transcriptome (cds, cdna, ncrna) and proteome reference for a large number of species</sub></td>
     <td><sub><a href='http://www.ensembl.org/index.html'>Link</a><sub></td>
-    <td><sub>[10]</sub></td>
   </tr>
   <tr>
     <td><sub>UniRef</sub></td>
     <td><sub>UniRef contains high quality computationally analyzed records that are enriched with automatic annotation and classification.</sub></td>
     <td><sub><a href='http://www.uniprot.org/downloads'>Link</a><sub></td>
-    <td><sub>[11]</sub></td>
   </tr>
   <tr>
     <td><sub>NONCODE</sub></td>
     <td><sub>NONCODE is dedicated to non-coding RNAs (excluding tRNAs and rRNAs) for multiple species</sub></td>
     <td><sub><a href='http://www.noncode.org/'>Link</a><sub></td>
-    <td><sub>[12]</sub></td>
   </tr>
 </table>
 
@@ -72,8 +68,8 @@ Functional annotations are computed based on a compendium of 26 publicly availab
 <table>
   <tr style="font–weight: bold;">
     <td style="width:10%">Name</sub></td>
-    <td style="width:35%">Information</sub></td>
-    <td style="width:35%">Institute</sub></td>
+    <td style="width:40%">Information</sub></td>
+    <td style="width:40%">Institute</sub></td>
     <td style="width:10%">Link</sub></td>
   </tr>
   <tr>
