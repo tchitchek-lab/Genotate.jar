@@ -75,145 +75,118 @@ Functional annotations are computed based on a compendium of 26 publicly availab
     <td style="width:35%">Information</sub></td>
     <td style="width:35%">Institute</sub></td>
     <td style="width:10%">Link</sub></td>
-    <td style="width:10%">Reference</sub></td>
   </tr>
   <tr>
     <td><sub>Interproscan</sub></td>
     <td><sub>Standalone which unify protein analysis tool and databases</sub></td>
     <td><sub>EMBL–EBI in Hinxton, The Wellcome Genome Campus</sub></td>
     <td><sub><a href='https://github.com/ebi–pf–team/interproscan'>Link</a><sub></td>
-    <td><sub>[12]</sub></td>
   </tr>
   <tr>
     <td><sub>Cdd</sub></td>
     <td><sub>Search Conserved Domains and Protein Classification</sub></td>
     <td><sub>The National Center for Biotechnology Information (NCBI) is part of the United States National Library of Medicine (NLM), a branch of the National Institutes of Health.</sub></td>
     <td><sub><a href='https://www.ncbi.nlm.nih.gov/cdd/'>Link</a><sub></td>
-    <td><sub>[13]</sub></td>
   </tr>
   <tr>
     <td><sub>Gene3d</sub></td>
     <td><sub>Search CATH domain families from PDB structures</sub></td>
     <td><sub>UCL Department of Biochemical Engineering. University College, London, UK.</sub></td>
     <td><sub><a href='http://gene3d.biochem.ucl.ac.uk/'>Link</a><sub></td>
-    <td><sub>[14]</sub></td>
   </tr>
   <tr>
     <td><sub>Hamap</sub></td>
     <td><sub>classification and annotation system of protein sequences</sub></td>
     <td><sub>SIB Swiss Institute of Bioinformatics</sub></td>
     <td><sub><a href='http://hamap.expasy.org/'>Link</a><sub></td>
-    <td><sub>[15]</sub></td>
   </tr>
   <tr>
     <td><sub>Panther</sub></td>
     <td><sub>Gene ontology classification system</sub></td>
     <td><sub>University of Southern California, CA, US.</sub></td>
     <td><sub><a href='http://www.pantherdb.org/'>Link</a><sub></td>
-    <td><sub>[16]</sub></td>
   </tr>
   <tr>
     <td><sub>Pfam</sub></td>
     <td><sub>Search protein families from Pfam database</sub></td>
     <td><sub>EMBL European Bioinformatics Institute</sub></td>
     <td><sub><a href='http://pfam.xfam.org/'>Link</a><sub></td>
-    <td><sub>[17]</sub></td>
   </tr>
   <tr>
     <td><sub>Pirsf</sub></td>
     <td><sub>Search against fully curated PIRSF families with HMM models</sub></td>
     <td><sub>Georgetown University Medical Center, University of Delaware</sub></td>
     <td><sub><a href='http://pir.georgetown.edu/pirwww/search/pirsfscan.shtml'>Link</a><sub></td>
-    <td><sub>[18]</sub></td>
   </tr>
   <tr>
     <td><sub>Prints</sub></td>
     <td><sub>Search protein fingerprints</sub></td>
     <td><sub>University of Manchester, UK.</sub></td>
     <td><sub><a href='http://130.88.97.239/PRINTS/index.php'>Link</a><sub></td>
-    <td><sub>[19]</sub></td>
   </tr>
   <tr>
     <td><sub>Prodom</sub></td>
     <td><sub>Search protein domain</sub></td>
     <td><sub>PRABI Villeurbanne, France.</sub></td>
     <td><sub><a href='http://prodom.prabi.fr/prodom/current/html/home.php'>Link</a><sub></td>
-    <td><sub>[20]</sub></td>
   </tr>
   <tr>
     <td><sub>Prosite</sub></td>
     <td><sub>Search protein families and domains</sub></td>
     <td><sub>Swiss Institute of Bioinformatics (SIB), Geneva, Switzerland.</sub></td>
     <td><sub><a href='http://prosite.expasy.org/'>Link</a><sub></td>
-    <td><sub>[21]</sub></td>
   </tr>
   <tr>
     <td><sub>Sfld</sub></td>
     <td><sub>Search enzymes classification in the Structure–Function Linkage Database</sub></td>
     <td><sub>UC San Francisco, Babbitt Lab, SFLD Team</sub></td>
     <td><sub><a href='http://sfld.rbvi.ucsf.edu/django/web/networks/'>Link</a><sub></td>
-    <td><sub>[22]</sub></td>
   </tr>
   <tr>
     <td><sub>Smart</sub></td>
     <td><sub>Simple Modular Architecture Research Tool</sub></td>
     <td><sub>EMBL, Heidelberg, Germany.</sub></td>
     <td><sub><a href='http://smart.embl–heidelberg.de/'>Link</a><sub></td>
-    <td><sub>[23]</sub></td>
   </tr>
   <tr>
     <td><sub>Superfamily</sub></td>
     <td><sub>structural and functional annotation for proteins and genomes</sub></td>
     <td><sub>University of Bristol, UK.</sub></td>
     <td><sub><a href='http://supfam.org/SUPERFAMILY/'>Link</a><sub></td>
-    <td><sub>[24]</sub></td>
   </tr>
   <tr>
     <td><sub>Tigrfam</sub></td>
     <td><sub>identify functionally related proteins based on sequence homology</sub></td>
     <td><sub>J. Craig Venter Institute, Rockville, MD, US.</sub></td>
     <td><sub><a href='http://www.jcvi.org/cgi–bin/tigrfams/index.cgi'>Link</a><sub></td>
-    <td><sub>[25]</sub></td>
-  </tr>
-  <tr>
-    <td><sub>Priam</sub></td>
-    <td><sub>Search enzyme–specific profiles research tool</sub></td>
-    <td><sub>The PRABI is the Rhone–Alpes Bioinformatics Center, a IBiSA regional cente.</sub></td>
-    <td><sub><a href='http://priam.prabi.fr/REL_MAR15/index_mar15.html'>Link</a><sub></td>
-    <td><sub>[26]</sub></td>
   </tr>
   <tr>
     <td><sub>Tmhmm</sub></td>
     <td><sub>predicts of transmembrane helices in proteins</sub></td>
     <td rowspan=3><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
     <td><sub><a href='http://www.cbs.dtu.dk/services/TMHMM/'>Link</a><sub></td>
-    <td><sub>[27]</sub></td>
   </tr>
   <tr>
     <td><sub>Signalp</sub></td>
     <td><sub>predicts the presence and location of signal peptide cleavage sites in amino acid sequences</sub></td>
     <td><sub><a href='http://www.cbs.dtu.dk/services/SignalP/'>Link</a><sub></td>
-    <td><sub>[28]</sub></td>
   </tr>
   <tr>
     <td><sub>Prop</sub></td>
     <td><sub>predicts arginine and lysine propeptide cleavage sites</sub></td>
     <td><sub><a href='http://www.cbs.dtu.dk/services/ProP/'>Link</a><sub></td>
-    <td><sub>[29]</sub></td>
   </tr>
   <tr>
     <td><sub>Coils</sub></td>
     <td><sub>Predicts coiled–coil conformation</sub></td>
     <td><sub>SIB Swiss Institute of Bioinformatics</sub></td>
     <td><sub><a href='http://embnet.vital–it.ch/software/COILS_form.html'>Link</a><sub></td>
-    <td><sub>[31]</sub></td>
   </tr>
   <tr>
     <td><sub>Mobidblite</sub></td>
     <td><sub>predictions of long intrinsically disordered regions</sub></td>
     <td><sub>Department of Biomedical Sciences, University of Padua</sub></td>
     <td><sub><a href='http://protein.bio.unipd.it/mobidblite/'>Link</a><sub></td>
-    <td><sub>[32]</sub></td>
   </tr>
 </table>
 
