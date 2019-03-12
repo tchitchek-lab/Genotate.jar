@@ -22,7 +22,7 @@ Genotate web platform can be installed on a server, follow the instruction on [G
 Genotate unifies ORF identification, similarity annotation and functional annotation in an automatic annotation platform.
 Genotate provides to biologist the possibility to annotate transcript sequence and entire transcriptome.
 
-<img src="README.figures/framework.png" />
+<img src="README.figures/workflow.png" />
 
 ## Identification of ORF
 
