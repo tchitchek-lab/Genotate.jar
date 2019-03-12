@@ -22,7 +22,7 @@ Genotate web platform can be installed on a server, follow the instruction on [G
 Genotate unifies ORF identification, similarity annotation and functional annotation in an automatic annotation platform.
 Genotate provides to biologist the possibility to annotate transcript sequence and entire transcriptome.
 
-<img src="README/framework.png" />
+<img src="README.figures/framework.png" />
 
 ## Identification of ORF
 
@@ -38,7 +38,7 @@ For each reconstructed transcript, Genotate firstly identifies the sets of all p
 The following figure represents the diversity of ORF.
 An ORF can begin at every start codon which has a stop codon in the same frame.
 
-<img src="README/orf.png" />
+<img src="README.figures/orf.png" />
 
 ORF 2 and 6 are complete ORF which includes the inner ORF 1, 4  and 5. The ORF 3 and 7 are incomplete and characterized as outside ORF.
 
@@ -56,18 +56,23 @@ The similarity annotations are computed based on any set of reference sequences 
   </tr>
   <tr>
     <td><sub>Ensembl</sub></td>
-    <td><sub>Transcriptome(cds, cdna, ncrna) and proteome for a large number of species</sub></td>
+    <td><sub>Genome, transcriptome(cds, cdna, ncrna) and proteome for a large number of species</sub></td>
     <td><sub><a href='http://www.ensembl.org/index.html'>Link</a><sub></td>
   </tr>
   <tr>
-    <td><sub>Uniprot</sub></td>
-    <td><sub>UniProtKB/TrEMBL contains high quality computationally analyzed records that are enriched with automatic annotation and classification. Swissprot contains high quality manually annotated and non–redundant protein sequence database.</sub></td>
-    <td><sub><a href='http://www.uniprot.org/downloads'>Link</a><sub></td>
+	<td><sub>NCBI</sub></td>
+	<td><sub>Genome, transcriptome(cds, cdna, ncrna) and proteome for a large number of species</sub></td>
+	<td><sub><a href='https://www.ncbi.nlm.nih.gov/'>Link</a><sub></td>
   </tr>
   <tr>
 	<td><sub>NONCODE</sub></td>
 	<td><sub>database dedicated to non-coding RNAs (excluding tRNAs and rRNAs), by species </sub></td>
 	<td><sub><a href='http://www.noncode.org/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>Uniprot</sub></td>
+    <td><sub>UniProtKB/TrEMBL contains high quality computationally analyzed records that are enriched with automatic annotation and classification. Swissprot contains high quality manually annotated and non–redundant protein sequence database.</sub></td>
+    <td><sub><a href='http://www.uniprot.org/downloads'>Link</a><sub></td>
   </tr>
 </table>
 
@@ -97,6 +102,12 @@ The functional annotations are computed based on a large set of publicly availab
     <td><sub><a href='https://www.ncbi.nlm.nih.gov/cdd/'>Link</a><sub></td>
   </tr>
   <tr>
+    <td><sub>Coils</sub></td>
+    <td><sub>Predicts coiled–coil conformation</sub></td>
+    <td><sub>SIB Swiss Institute of Bioinformatics</sub></td>
+    <td><sub><a href='http://embnet.vital–it.ch/software/COILS_form.html'>Link</a><sub></td>
+  </tr>
+  <tr>
     <td><sub>Gene3d</sub></td>
     <td><sub>Search CATH domain families from PDB structures</sub></td>
     <td><sub>UCL Department of Biochemical Engineering. University College, London, UK.</sub></td>
@@ -107,6 +118,12 @@ The functional annotations are computed based on a large set of publicly availab
     <td><sub>classification and annotation system of protein sequences</sub></td>
     <td><sub>SIB Swiss Institute of Bioinformatics</sub></td>
     <td><sub><a href='http://hamap.expasy.org/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>Mobidblite</sub></td>
+    <td><sub>predictions of long intrinsically disordered regions</sub></td>
+    <td><sub>Department of Biomedical Sciences, University of Padua</sub></td>
+    <td><sub><a href='http://protein.bio.unipd.it/mobidblite/'>Link</a><sub></td>
   </tr>
   <tr>
     <td><sub>Panther</sub></td>
@@ -180,44 +197,10 @@ The functional annotations can also be computed based on various prediction tool
     <td style="width:10%">Link</sub></td>
   </tr>
   <tr>
-    <td><sub>Tmhmm</sub></td>
-    <td><sub>predicts of transmembrane helices in proteins</sub></td>
-    <td rowspan=3><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
-    <td><sub><a href='http://www.cbs.dtu.dk/services/TMHMM/'>Link</a><sub></td>
-  </tr>
-  <tr>
-    <td><sub>Signalp</sub></td>
-    <td><sub>predicts the presence and location of signal peptide cleavage sites in amino acid sequences</sub></td>
-    <td><sub><a href='http://www.cbs.dtu.dk/services/SignalP/'>Link</a><sub></td>
-  </tr>
-  <tr>
-    <td><sub>Prop</sub></td>
-    <td><sub>predicts arginine and lysine propeptide cleavage sites</sub></td>
-    <td><sub><a href='http://www.cbs.dtu.dk/services/ProP/'>Link</a><sub></td>
-  </tr>
-  <tr>
-    <td><sub>Coils</sub></td>
-    <td><sub>Predicts coiled–coil conformation</sub></td>
-    <td><sub>SIB Swiss Institute of Bioinformatics</sub></td>
-    <td><sub><a href='http://embnet.vital–it.ch/software/COILS_form.html'>Link</a><sub></td>
-  </tr>
-  <tr>
-    <td><sub>Mobidblite</sub></td>
-    <td><sub>predictions of long intrinsically disordered regions</sub></td>
-    <td><sub>Department of Biomedical Sciences, University of Padua</sub></td>
-    <td><sub><a href='http://protein.bio.unipd.it/mobidblite/'>Link</a><sub></td>
-  </tr>
-  <tr>
-    <td><sub>rnammer</sub></td>
-    <td><sub>Annotates ribosomal RNA genes</sub></td>
-    <td><sub>Centre for Molecular Biology and Neuroscience and Institute of Medical Microbiology, University of Oslo</sub></td>
-    <td><sub><a href='http://www.cbs.dtu.dk/services/RNAmmer/'>Link</a><sub></td>
-  </tr>
-  <tr>
-    <td><sub>tRNAscan</sub></td>
-    <td><sub>Predicts transfer RNA genes</sub></td>
-    <td><sub>Biomolecular Engineering, University of California Santa Cruz</sub></td>
-    <td><sub><a href='http://lowelab.ucsc.edu/tRNAscan-SE/'>Link</a><sub></td>
+    <td><sub>BEPIPRED</sub></td>
+    <td><sub>Predict the location of linear B cell epitopes</sub></td>
+    <td><sub>Center for Biological Sequence Analysis, BioCentrum-DTU, Building 208, Technical University of Denmark</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/'>Link</a><sub></td>
   </tr>
   <tr>
     <td><sub>MHCI</sub></td>
@@ -244,10 +227,32 @@ The functional annotations can also be computed based on various prediction tool
     <td><sub><a href='http://www.cbs.dtu.dk/'>Link</a><sub></td>
   </tr>
   <tr>
-    <td><sub>BEPIPRED</sub></td>
-    <td><sub>Predict the location of linear B cell epitopes</sub></td>
-    <td><sub>Center for Biological Sequence Analysis, BioCentrum-DTU, Building 208, Technical University of Denmark</sub></td>
-    <td><sub><a href='http://www.cbs.dtu.dk/'>Link</a><sub></td>
+    <td><sub>Prop</sub></td>
+    <td><sub>predicts arginine and lysine propeptide cleavage sites</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/services/ProP/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>rnammer</sub></td>
+    <td><sub>Annotates ribosomal RNA genes</sub></td>
+    <td><sub>Centre for Molecular Biology and Neuroscience and Institute of Medical Microbiology, University of Oslo</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/services/RNAmmer/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>Signalp</sub></td>
+    <td><sub>predicts the presence and location of signal peptide cleavage sites in amino acid sequences</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/services/SignalP/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>Tmhmm</sub></td>
+    <td><sub>predicts of transmembrane helices in proteins</sub></td>
+    <td rowspan=3><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
+    <td><sub><a href='http://www.cbs.dtu.dk/services/TMHMM/'>Link</a><sub></td>
+  </tr>
+  <tr>
+    <td><sub>tRNAscan</sub></td>
+    <td><sub>Predicts transfer RNA genes</sub></td>
+    <td><sub>Biomolecular Engineering, University of California Santa Cruz</sub></td>
+    <td><sub><a href='http://lowelab.ucsc.edu/tRNAscan-SE/'>Link</a><sub></td>
   </tr>
 </table>
 
@@ -621,7 +626,7 @@ region_id  service begin   end     name                       description
 
 For each region an SVG graph is generated (which can be opened in a web browser) and allow to visualize the annotations on the ORF.
 
-<img src="README/example.png" />
+<img src="README.figures/example.png" />
 
 
 	
