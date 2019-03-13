@@ -229,6 +229,7 @@ The functional annotations can also be computed based on various prediction tool
   <tr>
     <td><sub>Prop</sub></td>
     <td><sub>predicts arginine and lysine propeptide cleavage sites</sub></td>
+    <td><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
     <td><sub><a href='http://www.cbs.dtu.dk/services/ProP/'>Link</a><sub></td>
   </tr>
   <tr>
@@ -240,12 +241,13 @@ The functional annotations can also be computed based on various prediction tool
   <tr>
     <td><sub>Signalp</sub></td>
     <td><sub>predicts the presence and location of signal peptide cleavage sites in amino acid sequences</sub></td>
+    <td><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
     <td><sub><a href='http://www.cbs.dtu.dk/services/SignalP/'>Link</a><sub></td>
   </tr>
   <tr>
     <td><sub>Tmhmm</sub></td>
     <td><sub>predicts of transmembrane helices in proteins</sub></td>
-    <td rowspan=3><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
+    <td><sub>Center for Biological Sequence Analysis at the Technical University of Denmark</sub></td>
     <td><sub><a href='http://www.cbs.dtu.dk/services/TMHMM/'>Link</a><sub></td>
   </tr>
   <tr>
