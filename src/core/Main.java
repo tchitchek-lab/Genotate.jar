@@ -32,8 +32,8 @@ public class Main {
 
 		System.out.println("Parse input sequences and search for open reading frame");
 		FindOrf.search_orf();
-		if(OrfWorker.use_cpat) {
-			System.out.println("Check coding portential of each ORF");
+		if(OrfWorker.use_cpat && FindOrf.nb_identified_orf > 0) {
+			System.out.println("Check coding potential of each ORF");
 			OrfWorker MyOrfWorker = new OrfWorker();
 			MyOrfWorker.Launcher();
 		}

@@ -80,6 +80,12 @@ public class OrfWorker {
                     Region new_nc_region = new Region(FindOrf.region_id_increment, 0, transcript_cur.seq.length()-1, transcript_cur.seq.length(), '+', "noncoding", "",transcript_cur.seq, transcript_cur.id);
                     FindOrf.region_map.put(new_nc_region.id, new_nc_region);
                     FindOrf.region_id_increment++;
+                    if (FindOrf.reverse){
+                        String seq_reverse = new StringBuffer(transcript_cur.seq).reverse().toString();
+                        Region new_nc_region_rev = new Region(FindOrf.region_id_increment, 0, seq_reverse.length()-1, seq_reverse.length(), '+', "noncoding", "",seq_reverse, transcript_cur.id);
+                        FindOrf.region_map.put(new_nc_region.id, new_nc_region_rev);
+                        FindOrf.region_id_increment++;
+                    }
                 }
             }
         }

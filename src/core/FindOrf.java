@@ -32,6 +32,7 @@ public class FindOrf {
 	public static Hashtable<Integer, objects.Transcript> transcript_map = new Hashtable<Integer, objects.Transcript>();
 	private static Set<Character> false_nucleotide_set = new HashSet<Character>();
 	private static int nb_refused_seq = 0;
+	public static int nb_identified_orf = 0;
 
 	/**
 	 * Codon to Amino Acid Genetic Code
@@ -346,5 +347,6 @@ public class FindOrf {
 		utils.Path.writer_prot.write(">"+transcript_current.name+"_"+orf.id+"\n");
 		utils.Path.writer_prot.write(translate(orf.seq)+"\n");
 		region_id_increment++;
+		nb_identified_orf++;
 	}
 }
