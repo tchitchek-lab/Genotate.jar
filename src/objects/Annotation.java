@@ -3,7 +3,7 @@ package objects;
 import core.FindOrf;
 
 /**
- * Contains the information for one annotation feature on a region.
+ * Annotation contains the information for one feature on a region.
  */
 public class Annotation  {
 
@@ -16,13 +16,13 @@ public class Annotation  {
 	public int region_id;
 
 	/**
-	 * Set the Annotation attributes.
-	 * @param service name of the annotation service
-	 * @param name name of the annotation
+	 * Set Annotation attributes.
+	 * @param service Name of the annotation tool
+	 * @param name Name of the annotation
 	 * @param description description of the annotation
-	 * @param begin start of the position on the sequence
-	 * @param end end of the position on the sequence
-	 * @param color color of the annotation in the SVG file
+	 * @param begin Position on the sequence
+	 * @param end End position on the sequence
+	 * @param color Color of the annotation in the SVG file
 	 * @param region_id ID of the region in the database
 	 */
 	public Annotation(String service, String name, String description, int begin,int end, String color, int region_id){
@@ -50,7 +50,7 @@ public class Annotation  {
 	}
 	
 	/**
-	 * Initialize the Annotation attributes.
+	 * Initialize Annotation attributes.
 	 */
 	public Annotation(){
 		this.service="init";
@@ -63,9 +63,9 @@ public class Annotation  {
 	}
 	
 	/**
-	 * Check the equality with another Annotation.
+	 * Check equality with another Annotation.
 	 * @param annot Annotation to compare with
-	 * @return true if the annotations are identical
+	 * @return true if annot have the same value
 	 */
 	public boolean equals(Annotation annot){
 		boolean bool = true;
@@ -80,7 +80,7 @@ public class Annotation  {
 	}
 	
 	/**
-	 * Create a formated string to display
+	 * this function create a formated string to display a annotations array
 	 * @return Annotation as String
 	 */
 	public String toString(){

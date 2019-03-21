@@ -3,7 +3,7 @@ package objects;
 import java.util.List;
 
 /**
- * Contains the information of one contig.
+ * Contig contains the information for one Contig.
  */
 public class WorkerResults {
 	public String service;
@@ -12,8 +12,8 @@ public class WorkerResults {
 	
 	/**
 	 * Set WorkerResults attributes.
-	 * @param service name of the service
-	 * @param options options of the service
+	 * @param service service
+	 * @param options options
 	 */
 	public WorkerResults(String service, List<String> options){
 		this.service = service;

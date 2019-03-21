@@ -15,7 +15,7 @@ import objects.Transcript;
 import objects.Region;
 
 /**
- * Search the ORFs in the input transcript sequences
+ * Search the ORF in the input Sequences
  */
 public class FindOrf {
 
@@ -65,7 +65,6 @@ public class FindOrf {
 	 * @throws Exception IO error
 	 */
 	public static void search_orf() throws Exception{
-		int nb_transcript_with_ORF = 0;
 		BufferedReader reader = new BufferedReader(new FileReader(utils.Path.inputtranscriptfastafile));
 		utils.Path.initializeWriters();
 		utils.Path.writer_region_info.write("orf_id\t"+"begin\t"+"end\t"+"size\t"+"strand\t"+"coding\t"+"type\t"+"transcript_id\n");
@@ -84,13 +83,8 @@ public class FindOrf {
 					String transcript_name=seqid.split(" ")[0].substring(1);
 					String transcript_desc=seqid.substring(transcript_name.length()+1);
 					int transcript_size= seq.length();
-					Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size);
+					Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size, seq);
 					find_all_ORF(transcript_current, seq);
-					if(transcript_current.id != -1){
-						utils.Path.writer_transcript_clean.write(seqid+"\n");
-						utils.Path.writer_transcript_clean.write(seq+"\n");
-						nb_transcript_with_ORF++;
-					}
 				}
 				seqid = line;
 				seqid=seqid.replace(":", "");
@@ -108,22 +102,13 @@ public class FindOrf {
 			String transcript_name=seqid.split(" ")[0].substring(1);
 			String transcript_desc=seqid.substring(transcript_name.length()+1);
 			int transcript_size= seq.length();
-			Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size);
+			Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size, seq);
 			find_all_ORF(transcript_current, seq);
-			if(transcript_current.id != -1){
-				utils.Path.writer_transcript_clean.write(seqid+"\n");
-				utils.Path.writer_transcript_clean.write(seq+"\n");
-				nb_transcript_with_ORF++;
-			}
 		}
 		reader.close();
 		utils.Path.closeWriters();
 		if(false_nucleotide_set.size()>0){
 			System.out.println(nb_refused_seq+" sequences refused. Nucleotide not allowed: "+false_nucleotide_set.toString());
-		}
-		if(nb_transcript_with_ORF == 0){
-			System.out.println("Coult not find any open reading frame for specified parameters. Check your input nucleic fasta file, only ATGCN bases are allowed.");
-			System.exit(0);
 		}
 	}
 	
@@ -161,7 +146,7 @@ public class FindOrf {
 	 * @param seqnucleic nucleic sequence
 	 * @return proteic sequence
 	 */
-	private static String translate(String seqnucleic){
+	public static String translate(String seqnucleic){
 		String seq_amino_acid="";
 		for(int i=0; i < seqnucleic.length()-2; i += 3){
 			String codon = seqnucleic.substring(i, i+3);
@@ -215,7 +200,7 @@ public class FindOrf {
 			findORF(seq_strand_reverse_3,'-', 2, transcript_current);
 		}
 		//WRITE NON CODING RNA
-		if(ncrna){
+		if(ncrna && transcript_current.nb_orf == 0){
 			Region ncrna = new Region(-1, 0, seq_strand_1.length()-1, seq_strand_1.length(), '+', "noncoding", "",seq_strand_1, -1);
 			write_ncrna(transcript_current,  ncrna);
 			if (reverse){
@@ -319,10 +304,10 @@ public class FindOrf {
 		region_map.put(ncrna.id, ncrna);
 		utils.Path.writer_region_info.write(ncrna.id+"\t"+ncrna.begin+"\t"+ncrna.end+"\t"+ncrna.size+"\t"
 		+ncrna.strand+"\t"+ncrna.coding+"\t"+ncrna.type+"\t"+ncrna.transcript_id+"\n");
-		utils.Path.writer_nucl_id.write(">"+ncrna.id+"\n");
-		utils.Path.writer_nucl_id.write(ncrna.seq+"\n");
-		utils.Path.writer_nucl.write(">"+transcript_current.name+"_"+ncrna.id+"\n");
-		utils.Path.writer_nucl.write(ncrna.seq+"\n");
+		//utils.Path.writer_nucl_id.write(">"+ncrna.id+"\n");
+		//utils.Path.writer_nucl_id.write(ncrna.seq+"\n");
+		//utils.Path.writer_nucl.write(">"+transcript_current.name+"_"+ncrna.id+"\n");
+		//utils.Path.writer_nucl.write(ncrna.seq+"\n");
 		utils.Path.writer_nc_id.write(">"+ncrna.id+"\n");
 		utils.Path.writer_nc_id.write(ncrna.seq+"\n");
 		region_id_increment++;
@@ -335,6 +320,7 @@ public class FindOrf {
 	 * @throws Exception IO error
 	 */
 	private static void write_orf(Transcript transcript_current, Region orf) throws Exception{
+		transcript_current.nb_orf++;
 		if (orf.strand == '-'){
 			int tmpbegin = transcript_current.size - orf.end - 1;
 			orf.end = transcript_current.size - orf.begin - 1;

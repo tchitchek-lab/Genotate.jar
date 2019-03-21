@@ -16,7 +16,7 @@ import objects.Region;
  */
 public class SVG {
 	/**
-	 * Create the SVG associated to a region 
+	 * Create the SVG for the region 
 	 * @throws Exception TASK
 	 */
 	public static void createSvgFiles() throws Exception {
@@ -33,12 +33,13 @@ public class SVG {
 	}
 
 	/**
-	 * Create the SVG using a list of annotations.
-	 * @param region_id id of the region
-	 * @param annots annotations on the region
+	 * Create the SVG with by using the list of annotations.
+	 * @param region_id is of the region
+	 * @param annots annotation on the region
 	 * @throws Exception TASK
 	 */
 	private static void createsvg(int region_id, ArrayList<Annotation> services_annot) throws Exception {
+		//System.out.println("Create SVG for :"+region_id);
 		Region region_cur = FindOrf.region_map.get(region_id);
 		Transcript transcript_cur = FindOrf.transcript_map.get(region_cur.transcript_id);
 
@@ -155,6 +156,7 @@ public class SVG {
 			}
 		}
 		svgtext += "\n</svg>";
+		//END
 
 		File outputsvg= new File(utils.Path.svg_directory+"/"+transcript_cur.name+"_"+region_cur.id+".svg");
 		BufferedWriter writer = new BufferedWriter(new PrintWriter(outputsvg, "UTF-8"));

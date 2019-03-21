@@ -1,13 +1,15 @@
 package objects;
 
 /**
- * Contig contains the information for one contig.
+ * Contig contains the information for one Contig.
  */
 public class Transcript {
 	public int id;
 	public String name;
 	public String desc;
 	public int size;
+	public int nb_orf;
+	public String seq;
 	
 	/**
 	 * Initialize Contig attributes.
@@ -17,6 +19,8 @@ public class Transcript {
 		this.name="init";
 		this.desc="init";
 		this.size=0;
+		this.nb_orf=0;
+		this.seq="init";
 	}
 	
 	/**
@@ -26,10 +30,11 @@ public class Transcript {
 	 * @param desc Description of the contig
 	 * @param size Length of the contig
 	 */
-	public Transcript(int id, String name, String desc, int size){
+	public Transcript(int id, String name, String desc, int size, String seq){
 		this.id = id;
 		this.name = name;
 		this.desc = desc;
 		this.size = size;
+		this.seq = seq;
 	}
 }

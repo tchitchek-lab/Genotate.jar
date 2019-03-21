@@ -4,13 +4,12 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Launcher of Genotate.
+ * Launcher of genotate.
  */
 public class Main {
-	
 	/**
-	 * Launcher of Genotate. Parse the arguments and compute the annotations.
-	 * @param args annotation options
+	 * Launcher of genotate. Parse the arguments and compute the annotation.
+	 * @param args Genotate options
 	 * @throws Exception TASK
 	 */
 	public static void main(String[] args) throws Exception {
@@ -30,9 +29,15 @@ public class Main {
 			System.out.println("Load genotate configuration file");
 			utils.Path.load_path_config();
 		}
-		
+
 		System.out.println("Parse input sequences and search for open reading frame");
 		FindOrf.search_orf();
+		if(OrfWorker.use_cpat) {
+			System.out.println("Check coding portential of each ORF");
+			OrfWorker MyOrfWorker = new OrfWorker();
+			MyOrfWorker.Launcher();
+		}
+
 		if (services_map.size()>0){
 			System.out.println("Launch the services on the region");
 			AnnotRegion.sample_and_annot(services_map);

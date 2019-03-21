@@ -32,7 +32,6 @@ public class OptionsParser {
 			+ "\nNETNGLYC        [score]  by default threshold = 0.5 (min 0 to max 1)"
 			+ "\nPROP            [score]  by default threshold = 0.2 (min 0 to max 1)"
 			+ "\nRNAMMER         [score]  by default threshold = 0.5 (min 0 to max 1)"
-			+ "\nSABLE           [score]  by default threshold = 5   (min 3 to max 9)"
 			+ "\nSIGNALP         [score]  by default threshold = 0.45(min 0 to max 1)"
 			+ "\nTRNASCANSE      [score]  by default threshold = 0.5 (min 0 to max 1)"
 			+ "\nCDD             [evalue] by default evalue = 0.05 (min 0 to max 1)"
@@ -43,7 +42,6 @@ public class OptionsParser {
 			+ "\nPANTHER         [evalue] by default evalue = 0.05 (min 0 to max 1)"
 			+ "\nPFAM            [evalue] by default evalue = 0.05 (min 0 to max 1)"
 			+ "\nPIRSF           [evalue] by default evalue = 0.05 (min 0 to max 1)"
-			+ "\nPRIAM           [evalue] by default evalue = 0.05 (min 0 to max 1)"
 			+ "\nPRINTS          [evalue] by default evalue = 0.05 (min 0 to max 1)"
 			+ "\nPRODOM          [evalue] by default evalue = 0.05 (min 0 to max 1)"
 			+ "\nPROSITEPATTERNS [evalue] by default evalue = 0.05 (min 0 to max 1)"
@@ -62,6 +60,8 @@ public class OptionsParser {
 			+ "\n-inner_orf                     Allows orf contained in larger ones."
 			+ "\n-outside_orf                   Allows partial orf lacking either a codon stop or a codon start."
 			+ "\n-orf_min_size      100         Filter orf to keep only those long enough. The size is in nucleic bases"
+			+ "\n-checkORF                      Use CPAT to check the ORF coding potential."
+			+ "\n-checkORF_threshold 0.5        Set CPAT threshold."
 			+ "\n-region_by_run     100         Number of region computed together"
 			+ "\n-refresh_time      10          Waiting time in seconds between each results check"
 			+ "\n-threads           8           Number of jobs computed at the same time"
@@ -70,11 +70,11 @@ public class OptionsParser {
 			+ "\n-stop_codon        TAG,TGA,TAA Stop codon(s) used to search for orf"
 			+ "\n-ignore_reverse                Do not compute the annotation on the reverse strand"
 			+ "\n-ignore_ncrna                  Do not compute the annotation of ncrna"
-			+ "\n-kingdom           eukaryote   Compute the annotation for either the eukaryote or the prokaryote kingdom"
+			+ "\n-kingdom           eukaryote   For signalp, compute for either the eukaryote or the prokaryote kingdom"
 			+ "\n\n";
 
 	/**
-	 * This method initialize the interproscan services
+	 * This method intitialize_interproscan_services
 	 */
 	private static void intitialize_interproscan_services(){
 		interproscan_services_available = new ArrayList<String>();
@@ -97,7 +97,7 @@ public class OptionsParser {
 	}
 	
 	/**
-	 * Parse the arguments given to genotate
+	 * This method parse the arguments given to genotate and set the parameters
 	 * @param args genotate arguments
 	 */
 	public static void options_parser(String[] args){
@@ -220,6 +220,18 @@ public class OptionsParser {
 			case "-ignore_ncrna":
 				FindOrf.ncrna=false;
 				System.out.println("Set ncrna region annotation: "+FindOrf.reverse);
+				continue;
+			case "-checkORF":
+				OrfWorker.use_cpat=true;
+				System.out.println("Use CPAT to check ORF coding potential: "+OrfWorker.use_cpat);
+				continue;
+			case "-checkORF_threshold":
+				if(args.length<i+2){
+					System.out.println("Error while parsing options. Please use -h for help.");
+					System.exit(0);
+				}
+				OrfWorker.cpat_threshold=Double.parseDouble(args[i+1]);
+				System.out.println("CPAT threshold: "+OrfWorker.cpat_threshold);
 				continue;
 			case "-help":
 				System.out.println(help);

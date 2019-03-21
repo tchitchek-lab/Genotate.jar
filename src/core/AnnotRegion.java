@@ -19,17 +19,15 @@ import objects.WorkerResults;
 import utils.Path;
 
 /**
- * Annotate a region
+ * Annot the region
  */
 public class AnnotRegion {
-	
 	public static int refresh_time = 10;
 	public static int nb_region_by_run = 100;
 	public static int nb_concurent_thread = 8;
 	public static Boolean services_messages = false;
 	public static Hashtable<Integer, ArrayList<Annotation>> annotation_map = new Hashtable<Integer, ArrayList<Annotation>>();
 	private static List<Callable<Object>> array_thread = new ArrayList<Callable<Object>>();
-	
 	/**
 	 * Take the full files of region. Create new files of [N] region. Initialize a worker for each.
 	 * Launch the computation of all the workers.
@@ -119,12 +117,12 @@ public class AnnotRegion {
 	}
 	
 	/**
-	 * Create a worker for each service
-	 * @param services service list
+	 * For a set of region, create a worker for each service.
+	 * @param services services list
 	 * @param sample_dir sample directory
-	 * @param file_nucl nucleic sequences
-	 * @param file_nc non-coding sequences
-	 * @param file_prot proteic sequences
+	 * @param file_nucl nucl sequences
+	 * @param file_nc nc sequences
+	 * @param file_prot prot sequences
 	 * @throws java.lang.Exception TASK
 	 */
 	public static void create_workers(Hashtable<String, List<String>> services,File sample_dir,File file_nucl,File file_nc,File file_prot) throws Exception {
@@ -147,8 +145,8 @@ public class AnnotRegion {
 	}
 	
 	/**
-	 * Manage threads in an array of threads (class Runnable)
-	 * @param array_thread array of threads form the class Runnable
+	 * Manage threads of an array of thread(class Runnable)
+	 * @param array_thread array of thread form class Runnable
 	 */
 	public static void runThreadsArray(List<Callable<Object>> array_thread) {
 		List<Future<?>> futures = new ArrayList<Future<?>>();
@@ -191,4 +189,9 @@ public class AnnotRegion {
 		}
 	}
 }
+
+
+
+
+
 

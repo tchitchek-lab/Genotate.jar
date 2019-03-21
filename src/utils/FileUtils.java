@@ -7,14 +7,14 @@ import java.io.File;
 import java.nio.channels.FileChannel;
 
 /**
- * Methods to manage files.
+ * Provide methods to manage files.
  */
 public class FileUtils {
 
 	/**
-	 * Concatenate all text files in a directory
-	 * @param directory a directory that must contains only text files
-	 * @param outputcombinefastafile a result file merged from the directory 
+	 * Concat all text file in a directory in another file
+	 * @param directory directory that must contains only text file
+	 * @param outputcombinefastafile is the result File merged from the directory 
 	 * @throws Exception TASK
 	 */
 	public static void combinedirectory(File directory,File outputcombinefastafile) throws Exception{
@@ -32,7 +32,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * Compress a folder in a zip archive
+	 * Compress a folder in a .zip archive
 	 * @param srcFolder path of the folder to compress
 	 * @param zip_path path of the compressed folder archive in format .zip 
 	 * @throws Exception TASK
@@ -47,7 +47,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * Add a file to a zip archive
+	 * Add a File to a zip archive
 	 * @param path TASK
 	 * @param srcFile file to add 
 	 * @param zip current open ZipOutputstream. 
@@ -70,7 +70,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * Create a zip archive from a directory
+	 * Create Zip from a directory
 	 * @param path TASK
 	 * @param srcFolder folder to add 
 	 * @param zip current open ZipOutputstream.
@@ -89,7 +89,7 @@ public class FileUtils {
 	}
 	
 	/**
-	 * Copy a file to a specified destination.
+	 * Copy a file to a specified destination wit a new name.
 	 * @param source TASK
 	 * @param dest TASK
 	 * @throws java.lang.Exception TASK

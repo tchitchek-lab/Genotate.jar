@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 import objects.WorkerResults;
 
 /**
- * Run the annotation services on a region fasta file
+ * Run the services on a region fasta file
  */
 public  class AnnotationWorker implements Callable<Object> {
 
@@ -24,17 +24,18 @@ public  class AnnotationWorker implements Callable<Object> {
 
 	/**
 	 * Set the worker attributes.
-	 * @param increment increment number of the actual service
+	 * @param increment number of the actual service
 	 * @param services_messages enable the output of services messages
-	 * @param service the name of an annotation tool
+	 * @param service the name of a annotation tool
 	 * @param options the options for the annotation tool
 	 * @param working_dir directory in which the service is executed
 	 * @param file_nucl fasta nucleic file
-	 * @param file_nc fasta non-coding file
+	 * @param file_nc fasta nc file
 	 * @param file_prot fasta prot file
 	 * @throws Exception TASK
 	 */
 	public AnnotationWorker(int increment, Boolean services_messages, String service, List<String> options, File working_dir, File file_nucl, File file_nc, File file_prot) throws Exception {
+		//System.out.println("Initialize "+fasta_sample_prot+" for "+service);
 		worker_results = new WorkerResults(service, options);
 		this.services_messages = services_messages;
 		this.name = increment+"_"+service;
@@ -77,7 +78,7 @@ public  class AnnotationWorker implements Callable<Object> {
 	}
 
 	/**
-	 * Launch the annotation service, get the result file, parse the result file, display the annotations, write the annotations.
+	 * Launch the service, get the result file, parse the result file, display the annotations, write the annotations.
 	 */
 	@Override
 	public WorkerResults call() throws Exception {
@@ -87,6 +88,7 @@ public  class AnnotationWorker implements Callable<Object> {
 			File computing_file = new File(working_dir+"/"+name+"_computing.txt");
 			File result_file = new File(working_dir+"/"+name+"_complete.txt");
 			String command=prog.run(computing_file,result_file,fasta_sample_nucl,fasta_sample_nc,fasta_sample_prot,worker_results.options,utils.Path.path_services);
+			//String line;
 			if(services_messages){
 				System.out.println("Message from "+worker_results.service+" bash -c "+command);
 			}
@@ -95,7 +97,7 @@ public  class AnnotationWorker implements Callable<Object> {
 			ReadStream s2 = new ReadStream("stderr", p.getErrorStream ());
 			s1.start ();
 			s2.start ();
-			p.waitFor();  
+			p.waitFor();
 			worker_results.annotations = prog.parse(result_file);
 		} catch (Exception e) {  
 			e.printStackTrace();  

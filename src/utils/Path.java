@@ -10,10 +10,9 @@ import java.util.Hashtable;
 import core.OptionsParser;
 
 /**
- * Files and folders names.
+ * Set files and folders names.
  */
 public class Path {
-	
 	public static String dir_path_project;
 	
 	public static String dir_path_database;
@@ -61,14 +60,14 @@ public class Path {
 	}
 
 	/**
-	 * Initialize the folder and file paths
+	 * Initialize the folders and files
 	 * @throws Exception TASK
 	 */
 	public static void create_output_path() throws Exception{
 		String output_directory_name;
 		if(OptionsParser.path_output_dir == ""){
 			String database_name = utils.Path.inputtranscriptfastafile.getName().replace(".fasta", "");
-			output_directory_name = "genotate_"+database_name;
+			output_directory_name = "out_genotate_"+database_name;
 		}else{
 			output_directory_name = OptionsParser.path_output_dir;
 		}
@@ -98,7 +97,7 @@ public class Path {
 	}
 	
 	/**
-	 * Build a directory and set full privileges for all users
+	 * this method build a directory and set executable,writable,readable true for all users
 	 * @param dir directory to build
 	 */
 	public static void buildDir_withpermission(File dir){
