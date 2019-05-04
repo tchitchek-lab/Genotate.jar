@@ -270,6 +270,16 @@ After installation check IN THE EXECUTABLE SCRIPTS the location of tch, perl, py
 Java is used to launch Genotate and can be downloaded at [java.com](https://www.java.com/fr/download/linux_manual.jsp).
 Please install java in services/java/bin/java.
 
+## Installation of CPAT v2
+CPAT is used for coding-potential assessment, and need to be installed.
+CPAT can be downloaded at [link](https://sourceforge.net/projects/rna-cpat/files/v2.0.0/CPAT-2.0.0.tar.gz).
+
+```
+wget https://sourceforge.net/projects/rna-cpat/files/v2.0.0/CPAT-2.0.0.tar.gz
+pip3 install CPAT-VERSION.tar.gz
+mv CPAT-VERSION CPAT
+```
+
 ## Installation of BLAST 2.6.0
 NCBI BLAST is used for similarity annotation, and need to be installed.
 BLAST can be downloaded at [NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download).
@@ -454,7 +464,6 @@ The following files and folders shoul be executable:
  * ProP executables in prop/bin and prop/how and the script prop
  * TMHMM executables in tmhmm/bin and the script tmhmm
  * SignalP executables in signalP/bin and the script signalp
- * SABLE executables in sable/bin and the script sable
 
 # <a name="Usage"> 2. Installation of Genotate</a>
 
@@ -511,6 +520,8 @@ Multiple options are available to run Genotate.
 -stop_codon        TAG,TGA,TAA Stop codon(s) used to search for orf
 -ignore_reverse                Do not compute the annotation on the reverse strand
 -ignore_ncrna                  Do not compute the annotation of ncrna
+-checkORF                      Use CPAT to check the ORF coding potential
+-checkORF_threshold 0.5        Set CPAT threshold
 ```
 
 Multiple services and databases are available to run Genotate functinal annotation. For each service a score is available to control the quality of the annotations.
