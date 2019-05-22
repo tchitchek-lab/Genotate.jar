@@ -28,6 +28,7 @@ public class FindOrf {
 	public static boolean ncrna=true;
 	public static int region_id_increment = 0;
 	public static int transcript_id_increment = 0;
+	public static Hashtable<Integer, Integer> transcript_cpat = new Hashtable<Integer, Integer>();
 	public static Hashtable<Integer, objects.Region> region_map = new Hashtable<Integer, objects.Region>();
 	public static Hashtable<Integer, objects.Transcript> transcript_map = new Hashtable<Integer, objects.Transcript>();
 	private static Set<Character> false_nucleotide_set = new HashSet<Character>();
@@ -73,6 +74,7 @@ public class FindOrf {
 		String seq = "";
 		String seqid = "";
 		String line = reader.readLine();
+		int cpat_index = 0;
 		if(line == null){
 			System.out.println("Error: Your input nucleic sequences file is empty !");
 			System.exit(0);
@@ -84,8 +86,9 @@ public class FindOrf {
 					String transcript_name=seqid.split(" ")[0].substring(1);
 					String transcript_desc=seqid.substring(transcript_name.length()+1);
 					int transcript_size= seq.length();
-					Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size, seq);
+					Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size, core.FindOrf.transcript_cpat.get(cpat_index), seq);
 					find_all_ORF(transcript_current, seq);
+					cpat_index++;
 				}
 				seqid = line;
 				seqid=seqid.replace(":", "");
@@ -103,7 +106,7 @@ public class FindOrf {
 			String transcript_name=seqid.split(" ")[0].substring(1);
 			String transcript_desc=seqid.substring(transcript_name.length()+1);
 			int transcript_size= seq.length();
-			Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size, seq);
+			Transcript transcript_current = new Transcript(-1, transcript_name, transcript_desc, transcript_size, core.FindOrf.transcript_cpat.get(cpat_index), seq);
 			find_all_ORF(transcript_current, seq);
 		}
 		reader.close();
@@ -187,18 +190,20 @@ public class FindOrf {
 	 * @throws Exception IO error
 	 */
 	public static void find_all_ORF(Transcript transcript_current, String seq_strand_1) throws Exception{
-		String seq_strand_2 = seq_strand_1.substring(1);
-		String seq_strand_3 = seq_strand_1.substring(2);
-		findORF(seq_strand_1,'+', 0, transcript_current);
-		findORF(seq_strand_2,'+', 1, transcript_current);
-		findORF(seq_strand_3,'+', 2, transcript_current);
-		if (reverse){
-			String seq_strand_reverse_1 = reverse_complement(seq_strand_1);
-			String seq_strand_reverse_2 = seq_strand_reverse_1.substring(1);
-			String seq_strand_reverse_3 = seq_strand_reverse_1.substring(2);
-			findORF(seq_strand_reverse_1,'-', 0, transcript_current);
-			findORF(seq_strand_reverse_2,'-', 1, transcript_current);
-			findORF(seq_strand_reverse_3,'-', 2, transcript_current);
+		if(transcript_current.cpat == 1) {
+			String seq_strand_2 = seq_strand_1.substring(1);
+			String seq_strand_3 = seq_strand_1.substring(2);
+			findORF(seq_strand_1, '+', 0, transcript_current);
+			findORF(seq_strand_2, '+', 1, transcript_current);
+			findORF(seq_strand_3, '+', 2, transcript_current);
+			if (reverse) {
+				String seq_strand_reverse_1 = reverse_complement(seq_strand_1);
+				String seq_strand_reverse_2 = seq_strand_reverse_1.substring(1);
+				String seq_strand_reverse_3 = seq_strand_reverse_1.substring(2);
+				findORF(seq_strand_reverse_1, '-', 0, transcript_current);
+				findORF(seq_strand_reverse_2, '-', 1, transcript_current);
+				findORF(seq_strand_reverse_3, '-', 2, transcript_current);
+			}
 		}
 		//WRITE NON CODING RNA
 		if(ncrna && transcript_current.nb_orf == 0){

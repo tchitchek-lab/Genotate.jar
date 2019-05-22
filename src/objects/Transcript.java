@@ -8,6 +8,7 @@ public class Transcript {
 	public String name;
 	public String desc;
 	public int size;
+	public int cpat;
 	public int nb_orf;
 	public String seq;
 	
@@ -19,6 +20,7 @@ public class Transcript {
 		this.name="init";
 		this.desc="init";
 		this.size=0;
+		this.cpat=1;
 		this.nb_orf=0;
 		this.seq="init";
 	}
@@ -30,11 +32,12 @@ public class Transcript {
 	 * @param desc Description of the contig
 	 * @param size Length of the contig
 	 */
-	public Transcript(int id, String name, String desc, int size, String seq){
+	public Transcript(int id, String name, String desc, int size, int cpat, String seq){
 		this.id = id;
 		this.name = name;
 		this.desc = desc;
 		this.size = size;
+		this.cpat = cpat;
 		this.seq = seq;
 	}
 }

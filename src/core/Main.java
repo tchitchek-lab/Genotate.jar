@@ -30,13 +30,13 @@ public class Main {
 			utils.Path.load_path_config();
 		}
 
-		System.out.println("Parse input sequences and search for open reading frame");
-		FindOrf.search_orf();
-		if(OrfWorker.use_cpat && FindOrf.nb_identified_orf > 0) {
-			System.out.println("Check coding potential of each ORF");
+		if(OrfWorker.use_cpat) {
+			System.out.println("Check coding potential of each Transcript");
 			OrfWorker MyOrfWorker = new OrfWorker();
 			MyOrfWorker.Launcher();
 		}
+		System.out.println("Parse input sequences and search for open reading frame");
+		FindOrf.search_orf();
 
 		if (services_map.size()>0){
 			System.out.println("Launch the services on the region");
