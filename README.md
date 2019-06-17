@@ -27,13 +27,13 @@ Genotate provides to biologist the possibility to annotate transcript sequence a
 ## Identification of ORF
 
 Genotate is able to identify for each reconstructed transcript all the ORF.
-To search for a peptidic functional domain it is necessary to know the encoded protein sequence. The open reading frame needs to be identified on the transcript sequence and then translated to obtain the protein.
-A reading frame characterized a sequence of nucleotides divided into a set of consecutive, non–overlapping triplets.
-To simplify the representation, only one frame and it's reverse is taken into account in the example below.
-The sequence contains 3 frames and their reverse, and each one can contain multiple ORF.
-An ORF is on a frame, begins with a Start codon initiating the translation and end with a Stop codon terminating the translation.
+To search for a peptidic functional domain it is necessary to know the encoded protein sequence.
 
-For each reconstructed transcript, Genotate firstly identifies the sets of all possible ORFs. ORF with a length under a threshold can be filtered, to avoid interpretations of sequences with no biological meaning. The start and stop codons, which initiate and end the ORF, can be specified by users. By default, start codon is set to ‘ATG’ and stop codons to ‘TAG, TGA, TAA’. The ORFs can be identified in both strands of the reconstructed transcripts. Inner ORFs which consist of nested ORF sequences, can also be identified as well as outside ORF which consists of sequences lacking either the start or stop codon.
+For each transcript to analyze, Genotate first check all transcript with CPAT to measure their coding potential. CPAT use by default the longest ORF which is kept if the coding potential is superior the selected threshold. ORFs are then translated to obtain the associated protein sequences.
+The user can also chose to disable CPAT and use a custom detection of all possible ORFs based on parameters selected in the ORF panel. The start and stop codons (which initiate and end the ORFs) can be specified by users. By default, start codon is set to 'ATG' and stop codons to 'TAG, TGA, and TAA'. ORFs with a length lower than a threshold can be filtered to avoid interpretations of sequences with no biological meaning. Inner ORFs (which consist of nested ORF sequences) can also be identified as well as outside ORF (which consist of ORFs lacking either the start or stop codon).
+By default, the transcript without any coding ORF are annotated as a non-coding RNA; and ORFs are also identified on the reverse complemented transcript sequence.
+
+In detail, the protein associated to a transcript can be obtained from multiples ORF encoded on the transcript. A frame is composed of nucleotide triplets called codon. The transcript sequence is divided into three frames, with a shift of one base on the sequence strand. The transcript sequence can also be reversed, and the nucleic base complemented to obtain the complementary sequence. An Open Reading Frame begins with a codon start and ends with a codon stop. A codon can be translated to an amino acid or end of translation signal. A codon encoding the beginning of the translation, such as 'ATG', is called codon start. A codon encoding the end of the translation, such as 'TAG, TGA, TAA', is called codon stop. A protein is obtained from the translated sequence of an Open Reading Frame. Moreover, due to sequencing errors the start or the stop codon can be truncated and not included in the input transcript sequence.
 
 The following figure represents the diversity of ORF.
 An ORF can begin at every start codon which has a stop codon in the same frame.
